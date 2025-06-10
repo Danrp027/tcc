@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <style>
+        body,
+        html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #cabecalho {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cabecalho h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 45px;
+            color: #333;
+        }
+
+        p {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cabecalho">
+        <h1>Editar Perfil</h1>
+        <hr style="width: 100%;">
+        <br>
+        <p>Email:</p>
+        <input placeholder="Digite seu email" type="email">
+        <p>Turma:</p>
+        <input placeholder="Sua Turma">
+        <p>Foto de Perfil:</p>
+        <input placeholder="Escolha uma foto para seu perfil" type="file">
+        <p>Bio:</p>
+        <textarea placeholder="Ex: idade, experiência e etc..."></textarea>
+        <p>Habilidades Técnicas:</p>
+        <input placeholder="Ex: elétrica, programação, soldagem e etc...">
+        <p>Soft Skills:</p>
+        <input placeholder="Ex: trabalho em equipe, liderança">
+        <p>Links:</p>
+        <input placeholder="GitHub, Linkedin, Portifólio" type="text">
+        <br>
+        <button>Atualizar</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body,
+        html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        #cabecalho {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #cabecalho h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 45px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        input {
+            width: 400px;
+            padding: 6px;
+            /*border-radius: 5px;*/
+            font-size: 15px;
+        }
+
+        button {
+            padding: 6px;
+            /*border-radius: 5px;*/
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cabecalho">
+        <h1>Login</h1>
+        <hr style="width: 100%;">
+        <br>
+        <p>Email ou Cpf:</p>
+        <input placeholder="Digite seu Email ou Cpf" type="email">
+        <p>Senha:</p>
+        <input placeholder="Digite sua Senha" type="password">
+        <br>
+        <p style="font-size: 15px; color: gray;">Não tem uma conta? <a href="cadastro.html"
+                style="color: red;">Cadastrar</a></p>
+        <button>Entrar</button>
+    </div>
+</body>
+
+</html>

@@ -7,7 +7,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../public/imagens'));
+        cb(null, path.join(__dirname, '../public/image'));
     },
     filename: (req, file, cb) => {
         const nomeArquivo = Date.now() + path.extname(file.originalname);
@@ -31,18 +31,18 @@ router.get('/', (req, res) => {
 });
 
 router.post("/", upload.single('imagem'), (req, res) => {
-  const { nomeCompleto, curso, turma, email, foto, bio, habilidadesTecnicas, softSkills, gitHub, linkedin } = req.body;
+  const { nomeCompleto, idade,  turma, email, bio, habilidadesTecnicas, softSkills, gitHub, linkedin, portifolio } = req.body;
 
-  const imagem = req.file ? 'imagens/' + req.file.filename : null;
+  const imagem = req.file ? 'image/' + req.file.filename : null;
 
   const query = `
-    INSERT INTO alunos (nome, curso, turma, email, foto, bio, github, estoque_minimo, quantidade)
+    INSERT INTO alunos (nome, idade, turma, email, foto, bio, github, linkedin, portifolio)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.run(
     query,
-    [nome, categoria, unidade, custo, venda, validade, imagem, minimo, quantidade],
+    [nomeCompleto, idade, turma, email, imagem, bio, gitHub, linkedin, portifolio],
     (err) => {
       if (err) {
         console.error("Erro ao inserir produto:", err);

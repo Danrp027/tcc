@@ -8,11 +8,9 @@ const db = new sqlite3.Database(dbPath, (err) => {
   } else {
     console.log('Banco conectado com sucesso!');
     //criarTabelas();
-    //addlinha();
+    //deletarTabela();
   }
 });
-
-
 
 
 function criarTabelas() {
@@ -22,6 +20,7 @@ function criarTabelas() {
  CREATE TABLE alunos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
+    idade INTEGER,
     curso TEXT NOT NULL,
     turma TEXT,
     email TEXT UNIQUE NOT NULL,
@@ -107,6 +106,7 @@ function criarTabelas() {
   db.run(`
    CREATE TABLE usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cpf TEXT,
     email TEXT,
     senha TEXT
   );
