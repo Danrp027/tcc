@@ -37,22 +37,60 @@
             color: #007bff;
         }
     </style>
+
+    <script>
+    function cadastrarUsuario() {
+      
+
+      const cpf = document.getElementById('cpf').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+    
+   
+
+
+      if (!cpf || !email || !senha) {
+        alert("Preencha todos os campos obrigatórios.");
+        return;
+        
+      }
+
+        const info = { cpf, email, senha };
+
+            fetch('/api/auth/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(info)
+            })
+                .then(response => response.text())
+                .then(resposta => alert(resposta))
+                .catch(error => {
+                    console.error('Erro ao enviar as informações:', error);
+                    alert('Ocorreu um erro ao enviar os dados. Verifique sua conexão e tente novamente.');
+                });
+        }
+  </script>
+
 </head>
 
 <body>
+   
     <div id="cabecalho">
         <h1>Cadastrar</h1>
         <hr style="width: 100%;">
+        
+         <p>Cpf:</p>
+        <input  id="cpf" type="number" placeholder="Digite seu cpf"><br>
+        <p >Email:</p>
+        <input id="email" placeholder="Digite seu email">
+        <p >Senha:</p>
+        <input id="senha" placeholder="Crie uma senha..">
+       
         <br>
-        <p>Email:</p>
-        <input placeholder="Digite seu nome completo">
-        <p>Senha:</p>
-        <input placeholder="Digite sua idade">
-        <p>Cpf:</p>
-        <input placeholder="Seu curso">
-        <br>
-        <button>Cadastrar</button>
+        <button onclick="cadastrarUsuario()">Cadastrar</button>
     </div>
+
+    
 </body>
 
 </html>

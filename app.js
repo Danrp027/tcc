@@ -10,10 +10,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const usuariosRoutes = require('./routes/usuarios');
 const projetosRoutes = require('./routes/projetos');
+const authRoutes = require('./routes/auth');
 
 
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/projetos', projetosRoutes);
+app.use('/api/auth', authRoutes);
 
 
 
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
 
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
