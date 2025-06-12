@@ -52,38 +52,6 @@
         }
     </style>
 
-<script>
-
-function Logar() {
-    
-    const valor = document.getElementById('valor').vaue.trim();
-    const senha = document.getElementById('senha').value.trim();
-
-   if (!valor || !senha) {
-        alert("Preencha todos os campos obrigatórios.");
-        return;
-        
-      }
-
-      const info = { valor, senha };
-
-       fetch('/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(info)
-            })
-                .then(response => response.text())
-                .then(resposta => window.location.href = resposta)
-                .catch(error => {
-                    console.error('Erro ao Logar:', error);
-                    alert('Ocorreu um erro ao validar as informações. Verifique sua conexão e tente novamente.');
-                });
-        }
-
-
-</script>
-
-
 </head>
 
 <body>
@@ -96,10 +64,14 @@ function Logar() {
         <p>Senha:</p>
         <input id="senha" placeholder="Digite sua Senha" type="password">
         <br>
-        <p style="font-size: 15px; color: gray;">Não tem uma conta? <a href="cadastroUsuario.html"
+        <p style="font-size: 15px; color: gray;">Não tem uma conta? <a href="teste.html"
                 style="color: red;">Cadastrar</a></p>
-        <button>Entrar</button>
+        <button onclick="Logar()">Entrar</button>
+
+       
     </div>
 </body>
+<script src="js/login.js"></script>
+
 
 </html>
