@@ -2,41 +2,197 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página de Login</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil - SENAI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0a3d91;
+      padding: 0 20px 40px;
+    }
+
+    .logo-container {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+
+    .logo-container img {
+      height: 60px;
+      opacity: 0.9;
+    }
+
+    form {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .profile-photo {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .profile-photo img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #e60000;
+      object-fit: cover;
+    }
+
+    .edit-photo {
+      position: absolute;
+      bottom: 0;
+      right: calc(50% - 70px);
+      background: #e60000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .edit-photo:hover {
+      background-color: #c40000;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn-salvar {
+      width: 100%;
+      padding: 14px;
+      background-color: #e60000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-salvar:hover {
+      background-color: #c40000;
+    }
+
+    #inputFoto {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="content">
-        <div class="logo"> <img src="icons/senailogo.png" alt=""></div>
-        
+  <div class="logo-container">
+    <img src="senailogo.png" alt="Logo SENAI">
+  </div>
+
+  <form>
+    <div class="profile-photo">
+      <img id="previewFoto" src="https://i.pravatar.cc/300" alt="Foto do usuário">
+      <label f or="inputFoto" class="edit-photo" title="Editar foto">
+        ✏️
+      </label>
+      <input type="file" id="inputFoto" accept="image/*" onchange="carregarFoto(event)">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Daniel Almeida">
+      </div>
+      <div class="form-group">
+        <label for="idade">Idade</label>
+        <input type="number" id="idade" placeholder="21">
       </div>
     </div>
-
-    <div class="right">
-      <form class="login-form">
-        <label for="email">Endereço de email</label>
-        <input type="email" id="email" placeholder="email@exemplo.com" required>
-
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" placeholder="Digite sua senha" required>
-
-        <div class="extras">
-          
-          <a href="#">Esqueceu a senha?</a>
-        </div>
-
-        <div class="botoes">
-          <button type="submit" class="login">Login</button>
-          <button type="button" class="signup">Sign up</button>
-        </div>
-
-        
-        </div>
-      </form>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="daniel.almeida@email.com">
+      </div>
+      <div class="form-group">
+        <label for="modulo">Módulo</label>
+        <input type="text" id="modulo" placeholder="101">
+      </div>
     </div>
-  </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="curso">Curso</label>
+        <input type="text" id="curso" placeholder="Sistemas de Informação">
+      </div>
+      <div class="form-group">
+        <label for="turma">Turma</label>
+        <input type="text" id="turma" placeholder="101">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foto">Foto (link externo)</label>
+      <input type="text" id="foto" placeholder="caminho/para/foto.jpg">
+    </div>
+    <div class="form-group">
+      <label for="biografia">Biografia</label>
+      <textarea id="biografia" rows="4" placeholder="Estudante de Sistemas de Informação na turma 101. Apaixonado por tecnologia e inovação."></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="hardskills">Hardskills</label>
+        <input type="text" id="hardskills" placeholder="Python, SQL, Git">
+      </div>
+      <div class="form-group">
+        <label for="softskills">Softskills</label>
+        <input type="text" id="softskills" placeholder="Trabalho em equipe, comunicação, resolução de problemas">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="portfolio">Portfólio</label>
+      <input type="url" id="portfolio" placeholder="https://meuportfolio.com">
+    </div>
+    <button type="submit" class="btn-salvar">Salvar</button>
+  </form>
+
+  <script>
+    function carregarFoto(event) {
+      const preview = document.getElementById('previewFoto');
+      preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
 </body>
 </html>

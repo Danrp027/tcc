@@ -85,20 +85,7 @@ function criarTabelas() {
 
   `);
 
-  db.run(`
-   CREATE TABLE usuarios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    cpf TEXT,
-    email TEXT,
-    senha TEXT
-  );
-    
-  `);
-
-
-
-
-
+ 
 }
 
 module.exports = db;

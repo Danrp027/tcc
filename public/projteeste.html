@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos - SENAI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0a3d91;
+      padding: 0 20px;
+    }
+
+    .logo-container {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .logo-container img {
+      height: 60px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0a3d91;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .projetos-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 75vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .projeto-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #f9f9f9;
+      transition: transform 0.2s;
+    }
+
+    .projeto-card:hover {
+      transform: scale(1.01);
+    }
+
+    .projeto-banner {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .projeto-content {
+      padding: 20px;
+    }
+
+    .projeto-content h2 {
+      margin: 0 0 10px;
+      color: #0a3d91;
+    }
+
+    .projeto-content p {
+      margin: 4px 0;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .projeto-info {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .icones-status {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      align-items: center;
+    }
+
+    .icone-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .icone-box img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="senailogo.png" alt="Logo SENAI">
+  </div>
+
+  <div class="container">
+    <h1>Projetos Disponíveis</h1>
+    <div class="projetos-lista">
+
+      <div class="projeto-card">
+        <img src="https://source.unsplash.com/featured/?robotics" class="projeto-banner" alt="Imagem Projeto Robô">
+        <div class="projeto-content">
+          <h2>Projeto Robô</h2>
+          <p><strong>Descrição:</strong> Desenvolvimento de robô empilhadeira autônomo.</p>
+          <p><strong>Objetivo:</strong> Automatizar processos de logística interna.</p>
+          <p><strong>Curso Relacionado:</strong> Mecatrônica</p>
+          <p class="projeto-info">Responsável: João Silva</p>
+          <p class="projeto-info">Status: Em andamento</p>
+          <p class="projeto-info">Início: 01/04/2025 | Fim: 30/06/2025</p>
+          <div class="icones-status">
+            <div class="icone-box">
+              <img src="https://img.icons8.com/emoji/48/000000/wrench-emoji.png" style="background-color: green; border-radius: 8px;">
+              3/3
+            </div>
+            <div class="icone-box">
+              <img src="https://img.icons8.com/emoji/48/000000/light-bulb-emoji.png" style="background-color: orange; border-radius: 8px;">
+              1/2
+            </div>
+            <div class="icone-box">
+              <img src="https://img.icons8.com/emoji/48/000000/laptop-emoji.png" style="background-color: red; border-radius: 8px;">
+              0/3
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repetir estrutura para outros projetos -->
+
+    </div>
+  </div>
+</body>
+</html>
