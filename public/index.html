@@ -11,8 +11,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
             width: 100%;
             height: 100%;
+            margin: 0;
+
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
@@ -20,6 +23,7 @@
         #cabecalho {
             display: flex;
             flex-direction: column;
+            width: 40%;
         }
 
         #cabecalho h1 {
@@ -29,46 +33,140 @@
 
         h1 {
             font-size: 45px;
-            color: #333;
         }
 
         p {
             font-size: 18px;
             font-weight: bold;
-            color: #007bff;
         }
 
         input {
-            width: 400px;
-            padding: 6px;
-            /*border-radius: 5px;*/
+            padding: 9px;
+            border-radius: 5px;
+            border: 1px solid #0077cc;
             font-size: 15px;
+
+            background-color: transparent;
+            box-shadow: 0px 0px 12px #b9b9b97a;
+        }
+
+        #valor{
+            background-image: url(icons/bx-user.svg);
+            background-position: 350px 7px;
+            background-repeat: no-repeat;
+            padding: 10px 30px 12px 10px;
+        }
+
+        #senha {
+            background-image: url(icons/bx-lock-alt.svg);
+            background-position: 350px 7px;
+            background-repeat: no-repeat;
+            padding: 10px 30px 12px 10px;
         }
 
         button {
-            padding: 6px;
-            /*border-radius: 5px;*/
+            width: 195px;
+            height: 32px;
+
+            border-radius: 5px;
+            border: none;
             cursor: pointer;
+
+            font-size: 15px;
+            color: white;
+            background-color: #0077cc;
+            box-shadow: 0px 0px 12px #b9b9b97a;
+        }
+
+        #cabecalho button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #left {
+            display: flex;
+            background-color: #0077cc;
+            width: 50%;
+            height: 100%;
+            justify-content: center;
+        }
+
+        #right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            width: 50%;
+        }
+
+        #but {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid;
+            border-radius: 5px;
+
+            width: 180px;
+            height: 30px;
+
+            font-size: 15px;
+            text-decoration: none;
+            color: #bb1d1d;
+            background-color: transparent;
+            box-shadow: 0px 0px 12px #b9b9b97a;
+
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 500px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 20px;
         }
     </style>
 
 </head>
 
 <body>
-    <div id="cabecalho">
-        <h1>Login</h1>
-        <hr style="width: 100%;">
-        <br>
-        <p>Email ou Cpf:</p>
-        <input id="valor" placeholder="Digite seu Email ou Cpf" type="email">
-        <p>Senha:</p>
-        <input id="senha" placeholder="Digite sua Senha" type="password">
-        <br>
-        <p style="font-size: 15px; color: gray;">Não tem uma conta? <a href="teste.html"
-                style="color: red;">Cadastrar</a></p>
-        <button onclick="Logar()">Entrar</button>
 
-       
+    <div id="left">
+        <div class="logo"> <img src="icons/senailogo.png" alt=""></div>
+    </div>
+
+    <div id="right">
+
+        <div id="cabecalho">
+            <h1>LOGIN</h1>
+            <hr style="width: 100%;">
+            <br>
+            <p>Email ou Cpf:</p>
+            <input id="valor" placeholder="Digite seu Email ou Cpf" type="email">
+            <p>Senha:</p>
+            <input id="senha" placeholder="Digite sua Senha" type="password">
+            <br>
+            <div id="but">
+                <button onclick="Logar()">Entrar</button>
+                <a href="cadastroUsuario.html">Cadastrar</a>
+            </div>
+
+        </div>
+
+
     </div>
 </body>
 <script src="js/login.js"></script>
