@@ -31,18 +31,28 @@ router.get('/', (req, res) => {
 });
 
 router.post("/", upload.single('imagem'), (req, res) => {
-  const { nomeCompleto, idade,  turma, email, bio, habilidadesTecnicas, softSkills, gitHub, linkedin, portifolio } = req.body;
+  const { nomeCompleto, idade, curso, turma, email, bio, habilidadesTecnicas, softSkills, gitHub, portifolio } = req.body;
+  const { id } = req.params;
 
-  const imagem = req.file ? 'image/' + req.file.filename : null;
+  const fotoPerfil = req.file ? 'image/' + req.file.filename : null;
 
   const query = `
     INSERT INTO alunos (nome, idade, turma, email, foto, bio, github, linkedin, portifolio)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+    INSERT INTO habilidades_tecnicas ()
+    VALUES ();
+
+    
+    INSERT INTO soft_skills ()
+    VALUES ();
   `;
+
+  
 
   db.run(
     query,
-    [nomeCompleto, idade, turma, email, imagem, bio, gitHub, linkedin, portifolio],
+    [nomeCompleto, idade, turma, email, fotoPerfil, bio, gitHub, linkedin, portifolio],
     (err) => {
       if (err) {
         console.error("Erro ao inserir produto:", err);

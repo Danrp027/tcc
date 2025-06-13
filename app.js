@@ -9,12 +9,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const usuariosRoutes = require('./routes/usuarios');
+const alunosRoutes = require('./routes/alunos');
 const projetosRoutes = require('./routes/projetos');
 const authRoutes = require('./routes/auth');
 
 
-app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/alunos', alunosRoutes);
 app.use('/api/projetos', projetosRoutes);
 app.use('/api/auth', authRoutes);
 

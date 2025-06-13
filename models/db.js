@@ -9,70 +9,51 @@ const db = new sqlite3.Database(dbPath, (err) => {
   } else {
     console.log('Banco conectado com sucesso!');
     //criarTabelas();
-    //deletarTabela();
+
   }
 });
 
 
 function criarTabelas() {
 
-  //Alunos
+  //Usuarios
   db.run(`
- CREATE TABLE alunos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    idade INTEGER,
-    curso TEXT NOT NULL,
-    turma TEXT,
-    email TEXT UNIQUE NOT NULL,
-    foto TEXT,
-    bio TEXT,
-    github TEXT,
-    linkedin TEXT,
-    portfolio TEXT
+ CREATE TABLE usuarios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+	nome TEXT NOT NULL,
+  cpf TEXT UNIQUE NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  senha TEXT NOT NULL,
+	idade	INTEGER,
+	id_curso INTEGER NOT NULL,
+  FOREIGN KEY(id_curso) REFERENCES cursos(id),
+	turma	TEXT,
+  modulo TEXT,
+	foto	TEXT,
+	biografia	TEXT,
+	hardskills	TEXT,
+	softskills	TEXT,
+  portfolio	TEXT
+	
 );
 
   `);
 
 
-  // Habilidades Tecnicas
-  db.run(`
- CREATE TABLE habilidades_tecnicas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    aluno_id INTEGER,
-    habilidade TEXT,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id)
-);
-
-
-    )
-  `);
-
-  // Soft Skills
-  db.run(`
-   CREATE TABLE soft_skills (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    aluno_id INTEGER,
-    skill TEXT,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id)
-);
-
-  `);
 
   // Projetos
   db.run(`
-    CREATE TABLE projetos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    descricao TEXT,
-    area_tecnica TEXT,
-    objetivo TEXT,
-    curso_relacionado TEXT,
-    responsavel_id INTEGER, -- Aluno ou professor
-    status TEXT CHECK(status IN ('Em andamento', 'Concluído', 'Aguardando participantes', 'Cancelado')),
-    data_inicio DATE,
-    data_fim DATE,
-    FOREIGN KEY (responsavel_id) REFERENCES alunos(id)
+  CREATE TABLE projetos (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	nome	TEXT NOT NULL,
+	descricao	TEXT,
+	objetivo	TEXT,
+	curso_relacionado	TEXT,
+	responsavel_id	INTEGER,
+	status	TEXT,
+	data_inicio	DATE,
+	data_fim	DATE,
+	FOREIGN KEY(responsavel_id) REFERENCES "usuarios"(id)
 );
 
   `);
