@@ -1,66 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
-    <style>
-        body,
-        html {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Perfil</title>
+<style>
+    body,
+    html {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #0077cc;
+    }
 
-        #cabecalho {
-            display: flex;
-            flex-direction: column;
-        }
+    #cabecalho {
+        display: flex;
+        flex-direction: column;
 
-        #cabecalho h1 {
-            display: flex;
-            justify-content: center;
-        }
+        padding: 30px;
+        height: auto;
 
-        h1 {
-            font-size: 45px;
-            color: #333;
-        }
+        border-radius: 5px;
+        background-color: azure;
+    }
 
-        p {
-            font-weight: bold;
-        }
-    </style>
+    #cabecalho h1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 45px;
+        color: #333;
+    }
+
+    p {
+        font-weight: bold;
+    }
+
+    .caixa {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    input {
+        width: 450px;
+
+        gap: 50px;
+
+        padding: 9px;
+        border-radius: 5px;
+        border: 1px solid #0077cc;
+        font-size: 15px;
+
+        background-color: transparent;
+        box-shadow: 0px 0px 7px 0px #b3b3b37a;
+
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        background-color: #ab1717;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
 </head>
 
 <body>
     <div id="cabecalho">
         <h1>Editar Perfil</h1>
-        <hr style="width: 100%;">
-        <br>
-        <p>Nome:</p>
-        <input placeholder="Victorio Souza" type="text">
-        <p>Idade:</p>
-        <input placeholder="33" type="number">
-        <p>Email:</p>
-        <input placeholder="Victorio@email.com" type="email">
-        <p>Módulo:</p>
-        <input placeholder="Módulo 1" type="text">
-        <p>Curso:</p>
-        <input placeholder="Desenvolvimento de Sistemas" type="text">
-        <p>Turma:</p>
-        <input placeholder="DSI" type="text">
-        <p>Biografia:</p>
-        <textarea id="biografia" rows="4" placeholder="Estudante de Desenvolvimentode Sistemas na turma DSI. Apaixonado por tecnologia e inovação."></textarea>
-        <p>Hardskills:</p>
-        <input placeholder="Elétrica, programação, soldagem e etc..." type="text">
-        <p>SoftSkills:</p>
-        <input placeholder="Trabalho em equipe, comunicação, resolução de problemas" type="text">
-        <p>Portifólio:</p>
-        <input placeholder="https://meuportfolio.com" type="url">
+        <div class="caixa">
+            <div class="group">
+                <p>Nome:</p>
+                <input placeholder="Victorio Souza" type="text">
+            </div>
+            <div class="group">
+                <p>Idade:</p>
+                <input placeholder="33" type="number">
+            </div>
+        </div>
+        <div class="caixa">
+            <div class="group">
+                <p>Email:</p>
+                <input placeholder="Victorio@email.com" type="email">
+            </div>
+            <div class="group">
+                <p>Módulo:</p>
+                <input placeholder="Módulo 1" type="text">
+            </div>
+        </div>
+        <div class="caixa">
+            <div class="group">
+                <p>Curso:</p>
+                <input placeholder="Desenvolvimento de Sistemas" type="text">
+            </div>
+            <div class="group">
+                <p>Turma:</p>
+                <input placeholder="DSI" type="text">
+            </div>
+        </div>
+        <div class="group">
+            <p>Biografia:</p>
+            <textarea id="biografia" rows="4"
+                placeholder="Estudante de Desenvolvimentode Sistemas na turma DSI. Apaixonado por tecnologia e inovação."></textarea>
+        </div>
+        <div class="caixa">
+            <div class="group">
+                <p>Hardskills:</p>
+                <input placeholder="Elétrica, programação, soldagem e etc..." type="text">
+            </div>
+            <div class="group">
+                <p>SoftSkills:</p>
+                <input placeholder="Trabalho em equipe, comunicação, resolução de problemas" type="text">
+            </div>
+        </div>
+        <div class="group">
+            <p>Portifólio:</p>
+            <input style="width: 950px;" placeholder="https://meuportfolio.com" type="url">
+        </div>
         <br>
         <button>Atualizar</button>
     </div>
