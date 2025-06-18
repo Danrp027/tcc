@@ -60,6 +60,41 @@ router.post("/criarUsuario", async (req, res) => {
   );
 });
 
+
+router.put("/:id", upload.single("foto"), (req, res) => {
+  const { nomeCompleto, cpf, email, idade, curso, turma, modulo, biografia, hardskills, softskills, portifolio } = req.body;
+  const id = req.params.id;
+  const fotoPerfil = req.file ? "image/" + req.file.filename : null;
+
+  const query = `
+    UPDATE usuarios SET 
+      nome = ?, 
+      cpf = ?, 
+      email = ?, 
+      senha = ?, 
+      idade = ?, 
+      turma = ?, 
+      modulo = ?, 
+      ${fotoPerfil ? "foto = ?," : ""}
+      biografia = ?, 
+      portfolio = ?
+    WHERE id = ?
+  `;
+
+  const params = imagem
+    ? [nome, categoria, unidade, custo, venda, validade, imagem, minimo, quantidade, id]
+    : [nome, categoria, unidade, custo, venda, validade, minimo, quantidade, id];
+
+  db.run(query, params, (err) => {
+    if (err) {
+      console.error("Erro ao atualizar produto:", err);
+      return res.status(500).send("Erro ao atualizar produto.");
+    }
+    res.send("Produto atualizado com sucesso!");
+  });
+});
+
+
 router.get('/', (req, res) => {
   res.send("Rota Funcionando!")
 });
