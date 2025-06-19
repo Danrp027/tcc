@@ -76,61 +76,66 @@
 </head>
 
 <body>
+
+    <form id="form-editar" enctype="multipart/form-data"></form>
     <div id="cabecalho">
-        <h1>Editar Perfil</h1>
+        
         <input type="file" name="foto" id="foto">
         <div class="caixa">
             <div class="group">
                 <p>Nome Completo:</p>
-                <input placeholder="Victorio Souza" type="text">
+                <input placeholder="Victorio Souza" name="nome" type="text">
             </div>
             <div class="group">
                 <p>Idade:</p>
-                <input placeholder="33" type="number">
+                <input placeholder="33" type="number" name="idade">
             </div>
         </div>
         <div class="caixa">
             <div class="group">
                 <p>Email:</p>
-                <input placeholder="Victorio@email.com" type="email">
+                <input placeholder="Victorio@email.com" name="email" type="email">
             </div>
             <div class="group">
                 <p>Módulo:</p>
-                <input placeholder="Módulo 1" type="text">
+                <input placeholder="Módulo 1" name="modulo" type="text">
             </div>
         </div>
         <div class="caixa">
             <div class="group">
                 <p>Curso:</p>
-                <input placeholder="Desenvolvimento de Sistemas" type="text">
+                <input placeholder="Desenvolvimento de Sistemas" name="curso" type="text">
             </div>
             <div class="group">
                 <p>Turma:</p>
-                <input placeholder="DSI" type="text">
+                <input placeholder="DSI" name="turma" type="text">
             </div>
         </div>
         <div class="group">
             <p>Biografia:</p>
-            <textarea id="biografia" rows="4"
+            <textarea id="biografia" name="biografia" rows="4"
                 placeholder="Estudante de Desenvolvimentode Sistemas na turma DSI. Apaixonado por tecnologia e inovação."></textarea>
         </div>
         <div class="caixa">
             <div class="group">
                 <p>Hardskills:</p>
-                <input placeholder="Elétrica, programação, soldagem e etc..." type="text">
+                <input name="hardskills" placeholder="Elétrica, programação, soldagem e etc..." type="text">
             </div>
             <div class="group">
                 <p>SoftSkills:</p>
-                <input placeholder="Trabalho em equipe, comunicação, resolução de problemas" type="text">
+                <input name="softskills" placeholder="Trabalho em equipe, comunicação, resolução de problemas" type="text">
             </div>
         </div>
         <div class="group">
-            <p>Portifólio:</p>
-            <input style="width: 950px;" placeholder="https://meuportfolio.com" type="url">
+            <p>Portfólio:</p>
+            <input name="portfolio" style="width: 950px;" placeholder="https://meuportfolio.com" type="url">
         </div>
         <br>
-        <button>Atualizar</button>
-    </div>
+        <button type="submit">Salvar Alterações</button>
+  
+</form>
 </body>
+
+<script src="js/editarPerfil.js"></script>
 
 </html>

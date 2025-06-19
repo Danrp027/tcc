@@ -4,20 +4,18 @@ function cadastrarUsuario() {
     const cpf = document.getElementById('cpf').value.trim();
     const email = document.getElementById('email').value.trim();
     const senha = document.getElementById('senha').value.trim();
-    const idade = document.getElementById('idade').value.trim();
-    const turma = document.getElementById('turma').value.trim();
-    const modulo = document.getElementById('modulo').value.trim();
+  
 
 
 
 
-    if (!nomeCompleto || !cpf || !email || !senha || !idade || !turma || !modulo) {
+    if (!nomeCompleto || !cpf || !email || !senha) {
         alert("Preencha todos os campos obrigatórios.");
         return;
 
     }
 
-    const info = { nomeCompleto, cpf, email, senha, idade, turma, modulo };
+    const info = { nomeCompleto, cpf, email, senha };
 
     fetch('/api/usuarios/criarUsuario', {
         method: 'POST',

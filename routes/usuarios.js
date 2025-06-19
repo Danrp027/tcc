@@ -18,36 +18,23 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-
-router.get('/', (req, res) => {
-  const query = "SELECT * FROM alunos";
-  db.all(query, [], (err, rows) => {
-    if (err) {
-      console.error("Erro ao buscar alunos:", err);
-      return res.status(500).send("Erro ao buscar alunos.");
-    }
-
-    res.json(rows);
-  });
-});
-
 router.post("/criarUsuario", async (req, res) => {
-  const { nomeCompleto, cpf, email, senha, idade, turma, modulo } = req.body;
+  const { nomeCompleto, cpf, email, senha } = req.body;
   const senhaCriptografada = await bcrypt.hash(senha, 10);
 
 
 
 
   const query = `
-    INSERT INTO usuarios (nome, cpf, email, senha, idade, turma, modulo)
-    VALUES (?, ?, ?, ?, ?, ?, ?);
+    INSERT INTO usuarios (nome, cpf, email, senha)
+    VALUES (?, ?, ?, ?);
   `;
 
 
 
   db.run(
     query,
-    [nomeCompleto, cpf, email, senhaCriptografada, idade, turma, modulo],
+    [nomeCompleto, cpf, email, senhaCriptografada],
     (err) => {
       if (err) {
         console.error("Erro ao inserir Usuario:", err);
@@ -60,40 +47,51 @@ router.post("/criarUsuario", async (req, res) => {
   );
 });
 
-
-router.put("/:id", upload.single("foto"), (req, res) => {
-  const { nomeCompleto, email, idade, curso, turma, modulo, biografia, hardskills, softskills, portifolio } = req.body;
+router.patch("/usuarios/:id", upload.single("foto"), (req, res) => {
   const id = req.params.id;
-  const fotoPerfil = req.file ? "image/" + req.file.filename : null;
+
+  const {
+    nome,
+    email,
+    idade,
+    modulo,
+    turma,
+    curso,
+    biografia,
+    hardskills,
+    softskills,
+    portfolio
+  } = req.body;
+
+  const foto = req.file ? "uploads/" + req.file.filename : null;
 
   const query = `
     UPDATE usuarios SET 
-      nome = ?,  
+      nome = ?, 
       email = ?, 
       idade = ?, 
-      turma = ?, 
       modulo = ?, 
-      ${fotoPerfil ? "foto = ?," : ""}
+      turma = ?, 
+      curso = ?, 
       biografia = ?, 
+      hardskills = ?, 
+      softskills = ?, 
       portfolio = ?
-      WHERE id = ?;
-
-    INSERT INTO cursos (nome, cpf, email, senha, idade, turma, modulo)
-    VALUES (?, ?, ?, ?, ?, ?, ?);
-
-  
+      ${foto ? ", foto = ?" : ""}
+    WHERE id = ?
   `;
 
-  const params = fotoPerfil
-    ? [nome, categoria, unidade, custo, venda, validade, imagem, minimo, quantidade, id]
-    : [nome, categoria, unidade, custo, venda, validade, minimo, quantidade, id];
+  const params = foto
+    ? [nome, email, idade, modulo, turma, curso, biografia, hardskills, softskills, portfolio, foto, id]
+    : [nome, email, idade, modulo, turma, curso, biografia, hardskills, softskills, portfolio, id];
 
   db.run(query, params, (err) => {
     if (err) {
-      console.error("Erro ao atualizar produto:", err);
-      return res.status(500).send("Erro ao atualizar produto.");
+      console.error("Erro ao atualizar perfil:", err);
+      return res.status(500).json({ error: "Erro ao atualizar perfil." });
     }
-    res.send("Produto atualizado com sucesso!");
+
+    res.json({ message: "Perfil atualizado com sucesso!" });
   });
 });
 

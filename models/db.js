@@ -9,12 +9,11 @@ const db = new sqlite3.Database(dbPath, (err) => {
   } else {
     console.log('Banco conectado com sucesso!');
     criarTabelas();
-    deletarColuna();
+    //deletarColuna();
     //deletarLinha();
     //adicionarCursos();
     //adicionarHardskills();
-
-
+    //deletarTabela();
 
   }
 });
@@ -31,7 +30,17 @@ ALTER TABLE cursos DROP COLUMN aluno_id;
 function deletarLinha() {
 
   db.run(`
-DELETE FROM usuarios WHERE id = 1;
+DELETE FROM hardskills WHERE id = 13;
+  `);
+
+}
+
+function deletarTabela() {
+
+  db.run(`
+PRAGMA foreign_keys = OFF;
+DROP TABLE cursos;
+
   `);
 
 }
@@ -46,12 +55,36 @@ VALUES ("PLANEJAMENTO E CONTROLE DA PRODUÇÃO");
   `);
 }
 function adicionarHardskills() {
-  const habilidades = [
-    'Desenvolvimento Web', 'Banco de Dados', 'Git', 'GitHub', 'Frameworks', 'Bibliotecas', 
-  ];
-
+        const habilidades = [
+  'Comunicação eficaz',
+  'Trabalho em equipe',
+  'Liderança',
+  'Pensamento crítico',
+  'Resolução de problemas',
+  'Proatividade',
+  'Organização',
+  'Gestão do tempo',
+  'Adaptabilidade',
+  'Empatia',
+  'Ética profissional',
+  'Responsabilidade',
+  'Criatividade',
+  'Inteligência emocional',
+  'Foco em resultados',
+  'Tomada de decisão',
+  'Atenção aos detalhes',
+  'Habilidade para feedback',
+  'Colaboração interdisciplinar',
+  'Capacidade de negociação',
+  'Autoconfiança',
+  'Disciplina',
+  'Escuta ativa',
+  'Gestão de conflitos',
+  'Comprometimento',
+  'Relacionamento interpessoal'
+];
   // Preparar o comando INSERT para adicionar as habilidades
-  const stmt = db.prepare("INSERT INTO hardskills (habilidade) VALUES (?)");
+  const stmt = db.prepare("INSERT OR IGNORE INTO softskills (skill) VALUES (?)");
 
   // Inserir as habilidades uma a uma
   habilidades.forEach(habilidade => {
@@ -73,34 +106,30 @@ function criarTabelas() {
 
   //Usuarios
   db.run(`
- CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-	nome TEXT NOT NULL,
+  nome TEXT NOT NULL,
   cpf TEXT UNIQUE NOT NULL,
   email TEXT UNIQUE NOT NULL,
   senha TEXT NOT NULL,
-	idade	INTEGER,
-  curso TEXT,
-	turma	TEXT,
+  idade INTEGER,
+  turma TEXT,
   modulo TEXT,
-	foto	TEXT,
-	biografia	TEXT,
-	hardskills	TEXT,
-	softskills	TEXT,
-  portfolio	TEXT
-	
+  foto TEXT,
+  biografia TEXT,
+  portfolio TEXT
 );
 
   `);
 
   // Habilidades Tecnicas
   db.run(`
- CREATE TABLE IF NOT EXISTS hardskills (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    aluno_id INTEGER,
-    habilidade TEXT,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id)
+CREATE TABLE IF NOT EXISTS hardskills (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  habilidade TEXT
 );
+
+
 
 
     )
@@ -108,24 +137,58 @@ function criarTabelas() {
 
   // Soft Skills
   db.run(`
-   CREATE TABLE IF NOT EXISTS softskills (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    aluno_id INTEGER,
-    skill TEXT,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id)
+CREATE TABLE IF NOT EXISTS softskills (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  skill TEXT
 );
+
 
   `);
 
   //Cursos
   db.run(`
    CREATE TABLE IF NOT EXISTS cursos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    aluno_id INTEGER,
-    curso TEXT,
-    FOREIGN KEY (aluno_id) REFERENCES alunos(id)
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  curso TEXT
 );
 
+
+  `);
+
+  //usuario Cursos
+  db.run(`
+ CREATE TABLE IF NOT EXISTS usuario_cursos (
+  usuario_id INTEGER,
+  curso_id INTEGER,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  FOREIGN KEY (curso_id) REFERENCES cursos(id),
+  PRIMARY KEY (usuario_id, curso_id)
+);
+
+  `);
+
+  //usuario hardskills
+  db.run(`
+CREATE TABLE IF NOT EXISTS usuario_hardskills (
+  usuario_id INTEGER,
+  hardskill_id INTEGER,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  FOREIGN KEY (hardskill_id) REFERENCES hardskills(id),
+  PRIMARY KEY (usuario_id, hardskill_id)
+);
+
+
+  `);
+
+  //usuario softskills
+  db.run(`
+CREATE TABLE IF NOT EXISTS usuario_softskills (
+  usuario_id INTEGER,
+  softskill_id INTEGER,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  FOREIGN KEY (softskill_id) REFERENCES softskills(id),
+  PRIMARY KEY (usuario_id, softskill_id)
+);
   `);
 
   // Projetos

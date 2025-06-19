@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 const path = require('path');
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 router.post("/login", (req, res) => {
   const { valor, senha } = req.body;
@@ -28,10 +28,19 @@ router.post("/login", (req, res) => {
       return res.status(401).json({ error: "Senha incorreta." });
     }
 
-    
-    return res.json({ redirect: "/projetos.html" });
+    // LOGIN OK — envia apenas nome e email
+  return res.json({
+  usuario: {
+    id: row.id,
+    nome: row.nome,
+    email: row.email
+  },
+  redirect: "/projetos.html"
+});
+
   });
 });
+
 
 module.exports = router;
 
