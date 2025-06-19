@@ -10,13 +10,14 @@
         body,
         html {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
 
             width: 100%;
+            margin: 0;
 
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #0077cc;
         }
 
         .container {
@@ -30,11 +31,86 @@
         }
 
         #quadro {
-            width: 100%;
+
+            width: 70%;
+
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
 
+        #painel {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            background-color: white;
+            width: 100%;
+            height: 100px;
+            gap: 390px;
+
+            padding: 20px 0px;
+            margin-bottom: 20px;
+        }
+
+        #funct {
+            display: flex;
+            gap: 10px;
+            margin-right: 5%;
+        }
+
+        #criar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            background-image: url(icons/soma.svg);
+            background-position: 9px 12px;
+            background-repeat: no-repeat;
+            background-color: #ab1717;
+
+            font-weight: bold;
+            color: white;
+
+            width: 180px;
+            height: 51px;
+
+            padding: 10px;
+            border: 0px;
+            border-radius: 3px;
+
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #criar:hover {
+            transform: scale(1.05);
+        }
+
+        #editarPerfil {
+            background-image: url(icons/userwhite.svg);
+            background-repeat: no-repeat;
+            background-position: 12px 12px;
+            background-color: #0077cc;
+
+            border: 0px;
+            border-radius: 3px;
+
+            width: 50px;
+
+            transition: transform 0.3s;
+        }
+
+        #editarPerfil:hover {
+            transform: scale(1.05);
+        }
+
+        #h1 {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-size: 30px;
         }
 
         .imgs {
@@ -50,7 +126,32 @@
 
         .divs {
             display: flex;
+            flex-direction: column;
+        }
 
+        #icons {
+            display: flex;
+        }
+
+        #juntar-se {
+            height: 51px;
+
+            border: 0px;
+            border-radius: 3px;
+
+            margin-top: 10px;
+
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+
+            background-color: #0077cc;
+
+            transition: transform 0.3s;
+        }
+
+        #juntar-se:hover {
+            transform: scale(1.01);
         }
     </style>
 
@@ -58,100 +159,132 @@
 
 <body>
 
+    <div id="painel">
+
+        <div id="h1">
+            <h1>Projetos Disponíveis</h1>
+        </div>
+
+        <div id="funct">
+            <button id="criar">Criar Nova Demanda</button>
+            <a id="editarPerfil" href="editarPerfil.html"></a>
+        </div>
+
+    </div>
+
     <div id="quadro">
 
         <div class="container">
 
-<button>Criar Nova Demanda</button>
-<button> <a href="editarPerfil.html">Editar Perfil</a></button>
+            <h2>Projeto do Robô</h2>
+            <p><strong>Descrição:</strong></p>
+            <p></p><strong>Objetivo:</strong></p>
+            <p></p><strong>Curso Relacionado:</strong></p>
+            <p></p><strong>Responsável:</strong></p>
+            <p></p><strong>Status:</strong></p>
+            <p></p><strong>Inicio:</strong> | <strong>Fim:</strong></p>
 
-        </div>
-
-
-
-
-        <div class="container">
-
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
             <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
 
-                <button>Juntar-se</button>
+                <div id="icons">
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                </div>
+
+                <button id="juntar-se">Juntar-se</button>
             </div>
         </div>
 
 
         <div class="container">
 
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
+            <h2>Projeto do Robô</h2>
+            <p><strong>Descrição:</strong></p>
+            <p></p><strong>Objetivo:</strong></p>
+            <p></p><strong>Curso Relacionado:</strong></p>
+            <p></p><strong>Responsável:</strong></p>
+            <p></p><strong>Status:</strong></p>
+            <p></p><strong>Inicio:</strong> | <strong>Fim:</strong></p>
+
             <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+
+                <div id="icons">
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                </div>
+
+                <button id="juntar-se">Juntar-se</button>
             </div>
         </div>
 
 
         <div class="container">
 
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
+            <h2>Projeto do Robô</h2>
+            <p><strong>Descrição:</strong></p>
+            <p></p><strong>Objetivo:</strong></p>
+            <p></p><strong>Curso Relacionado:</strong></p>
+            <p></p><strong>Responsável:</strong></p>
+            <p></p><strong>Status:</strong></p>
+            <p></p><strong>Inicio:</strong> | <strong>Fim:</strong></p>
+
             <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+
+                <div id="icons">
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                </div>
+
+                <button id="juntar-se">Juntar-se</button>
             </div>
         </div>
 
 
         <div class="container">
 
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
+            <h2>Projeto do Robô</h2>
+            <p><strong>Descrição:</strong></p>
+            <p></p><strong>Objetivo:</strong></p>
+            <p></p><strong>Curso Relacionado:</strong></p>
+            <p></p><strong>Responsável:</strong></p>
+            <p></p><strong>Status:</strong></p>
+            <p></p><strong>Inicio:</strong> | <strong>Fim:</strong></p>
+
             <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+
+                <div id="icons">
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                </div>
+
+                <button id="juntar-se">Juntar-se</button>
             </div>
         </div>
 
 
         <div class="container">
 
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
+            <h2>Projeto do Robô</h2>
+            <p><strong>Descrição:</strong></p>
+            <p></p><strong>Objetivo:</strong></p>
+            <p></p><strong>Curso Relacionado:</strong></p>
+            <p></p><strong>Responsável:</strong></p>
+            <p></p><strong>Status:</strong></p>
+            <p></p><strong>Inicio:</strong> | <strong>Fim:</strong></p>
+
             <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-            </div>
-        </div>
 
+                <div id="icons">
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                    <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                </div>
 
-        <div class="container">
-
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
-            <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-            </div>
-        </div>
-
-
-        <div class="container">
-
-            <h1>Projeto do Robô</h1>
-            <p>O projeto consiste em montar um robô empilhadeira</p>
-            <div class="divs">
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
-                <label class="lab"><img class="imgs" src="icons/Foto.png">0/0</label>
+                <button id="juntar-se">Juntar-se</button>
             </div>
         </div>
 
