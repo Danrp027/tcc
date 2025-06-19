@@ -9,8 +9,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
   } else {
     console.log('Banco conectado com sucesso!');
     criarTabelas();
-    //deletarColuna();
+    deletarColuna();
     //deletarLinha();
+    //adicionarCursos();
+    //adicionarHardskills();
 
 
 
@@ -20,7 +22,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
 function deletarColuna() {
 
   db.run(`
-ALTER TABLE usuarios DROP COLUMN softskills;
+ALTER TABLE cursos DROP COLUMN aluno_id;
   `);
 
 }
@@ -33,6 +35,35 @@ DELETE FROM usuarios WHERE id = 1;
   `);
 
 }
+
+function adicionarCursos() {
+  db.run(`
+INSERT INTO cursos (curso)
+VALUES ("PLANEJAMENTO E CONTROLE DA PRODUÇÃO");
+	
+);
+
+  `);
+}
+function adicionarHardskills() {
+  const habilidades = [
+    'Desenvolvimento Web', 'Banco de Dados', 'Git', 'GitHub', 'Frameworks', 'Bibliotecas', 
+  ];
+
+  // Preparar o comando INSERT para adicionar as habilidades
+  const stmt = db.prepare("INSERT INTO hardskills (habilidade) VALUES (?)");
+
+  // Inserir as habilidades uma a uma
+  habilidades.forEach(habilidade => {
+    stmt.run(habilidade);
+  });
+
+  // Finalizar a execução e fechar a preparação
+  stmt.finalize(() => {
+    console.log("Habilidades inseridas com sucesso!");
+  });
+}
+
 
 
 

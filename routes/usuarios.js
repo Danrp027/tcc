@@ -62,26 +62,29 @@ router.post("/criarUsuario", async (req, res) => {
 
 
 router.put("/:id", upload.single("foto"), (req, res) => {
-  const { nomeCompleto, cpf, email, idade, curso, turma, modulo, biografia, hardskills, softskills, portifolio } = req.body;
+  const { nomeCompleto, email, idade, curso, turma, modulo, biografia, hardskills, softskills, portifolio } = req.body;
   const id = req.params.id;
   const fotoPerfil = req.file ? "image/" + req.file.filename : null;
 
   const query = `
     UPDATE usuarios SET 
-      nome = ?, 
-      cpf = ?, 
+      nome = ?,  
       email = ?, 
-      senha = ?, 
       idade = ?, 
       turma = ?, 
       modulo = ?, 
       ${fotoPerfil ? "foto = ?," : ""}
       biografia = ?, 
       portfolio = ?
-    WHERE id = ?
+      WHERE id = ?;
+
+    INSERT INTO cursos (nome, cpf, email, senha, idade, turma, modulo)
+    VALUES (?, ?, ?, ?, ?, ?, ?);
+
+  
   `;
 
-  const params = imagem
+  const params = fotoPerfil
     ? [nome, categoria, unidade, custo, venda, validade, imagem, minimo, quantidade, id]
     : [nome, categoria, unidade, custo, venda, validade, minimo, quantidade, id];
 
