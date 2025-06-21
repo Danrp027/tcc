@@ -1,43 +1,127 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Preencher campos com dados do localStorage
-  const nome = localStorage.getItem("usuario_nome");
-  const email = localStorage.getItem("usuario_email");
+let hardskillsTagify;
+let softskillsTagify;
+
+document.addEventListener("DOMContentLoaded", async () => {
   const id = localStorage.getItem("usuario_id");
 
-  const campoNome = document.querySelector('input[name="nome"]');
-  const campoEmail = document.querySelector('input[name="email"]');
+  try {
+    const [cursos, hardskills, softskills] = await Promise.all([
+      fetch("/api/usuarios/cursos").then(res => res.json()),
+      fetch("/api/usuarios/hardskills").then(res => res.json()),
+      fetch("/api/usuarios/softskills").then(res => res.json())
+    ]);
 
-  if (campoNome && nome) campoNome.value = nome;
-  if (campoEmail && email) campoEmail.value = email;
+    // Tagify
+    hardskillsTagify = new Tagify(document.querySelector('#hardskills'), {
+      whitelist: hardskills.map(h => h.habilidade),
+      dropdown: { enabled: 1, maxItems: 10 }
+    });
 
-  // Enviar formulário de edição
-  const form = document.getElementById("form-editar");
+    softskillsTagify = new Tagify(document.querySelector('#softskills'), {
+      whitelist: softskills.map(s => s.skill),
+      dropdown: { enabled: 1, maxItems: 10 }
+    });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Datalist cursos
+    const datalist = document.getElementById("lista-cursos");
+    cursos.forEach(curso => {
+      const option = document.createElement("option");
+      option.value = curso.curso;
+      datalist.appendChild(option);
+    });
 
-    const formData = new FormData(form);
+    // Preencher dados do usuário
+    const usuario = await fetch(`/api/usuarios/usuarios/${id}`).then(res => res.json());
 
-    try {
-      const response = await fetch(`/api/usuarios/${id}`, {
-        method: "PATCH",
-        body: formData
-      });
+    document.querySelector('input[name="nome"]').value = usuario.nome || "";
+    document.querySelector('input[name="email"]').value = usuario.email || "";
+    document.querySelector('input[name="idade"]').value = usuario.idade || "";
+    document.querySelector('input[name="modulo"]').value = usuario.modulo || "";
+    document.querySelector('input[name="turma"]').value = usuario.turma || "";
+    document.querySelector('textarea[name="biografia"]').value = usuario.biografia || "";
+    document.querySelector('input[name="portfolio"]').value = usuario.portfolio || "";
+    document.querySelector('input[name="curso"]').value = usuario.cursos?.[0] || "";
 
-      const result = await response.json();
-
-      if (result.message) {
-        alert("Perfil atualizado com sucesso!");
-
-        // Atualiza localStorage com os novos dados
-        localStorage.setItem("usuario_nome", formData.get("nome"));
-        localStorage.setItem("usuario_email", formData.get("email"));
-      } else {
-        alert(result.error || "Erro ao atualizar.");
-      }
-    } catch (err) {
-      console.error("Erro na requisição:", err);
-      alert("Erro de conexão.");
+    if (usuario.foto) {
+      document.getElementById("preview-foto").src = `/image/${usuario.foto}`;
     }
-  });
+
+    setTimeout(() => {
+      if (usuario.hardskills?.length) {
+        hardskillsTagify.addTags(usuario.hardskills);
+      }
+      if (usuario.softskills?.length) {
+        softskillsTagify.addTags(usuario.softskills);
+      }
+    }, 100);
+  } catch (err) {
+    console.error("Erro ao carregar dados:", err);
+    alert("Erro ao carregar dados do perfil.");
+  }
+});
+
+// Preview de imagem
+document.getElementById("foto").addEventListener("change", function () {
+  const file = this.files[0];
+  const preview = document.getElementById("preview-foto");
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Submissão do formulário
+document.getElementById("form-editar").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const id = localStorage.getItem("usuario_id");
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const cursoValor = document.querySelector("#curso").value;
+  formData.set("curso", JSON.stringify([cursoValor]));
+
+  try {
+    // 1. Atualizar dados pessoais
+    const responsePerfil = await fetch(`/api/usuarios/usuarios/${id}`, {
+      method: "PATCH",
+      body: formData
+    });
+
+    const resultPerfil = await responsePerfil.json();
+
+    if (!resultPerfil.message) {
+      alert(resultPerfil.error || "Erro ao atualizar o perfil.");
+      return;
+    }
+
+    // 2. Atualizar skills separadamente
+    const hards = hardskillsTagify.value.map(tag => tag.value);
+    const softs = softskillsTagify.value.map(tag => tag.value);
+
+    const responseSkills = await fetch(`/api/usuarios/usuarios/${id}/skills`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ hardskills: hards, softskills: softs })
+    });
+
+    const resultSkills = await responseSkills.json();
+
+    if (!resultSkills.message) {
+      alert(resultSkills.error || "Erro ao salvar as skills.");
+      return;
+    }
+
+    // Sucesso
+    alert("Perfil atualizado com sucesso!");
+    localStorage.setItem("usuario_nome", formData.get("nome"));
+    localStorage.setItem("usuario_email", formData.get("email"));
+  } catch (err) {
+    console.error("Erro ao enviar dados:", err);
+    alert("Erro ao atualizar perfil.");
+  }
 });
