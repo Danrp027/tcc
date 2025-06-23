@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("/api/usuarios/softskills").then(res => res.json())
     ]);
 
-    // Tagify
+    
     hardskillsTagify = new Tagify(document.querySelector('#hardskills'), {
       whitelist: hardskills.map(h => h.habilidade),
       dropdown: { enabled: 1, maxItems: 10 }
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       dropdown: { enabled: 1, maxItems: 10 }
     });
 
-    // Datalist cursos
+  
     const datalist = document.getElementById("lista-cursos");
     cursos.forEach(curso => {
       const option = document.createElement("option");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       datalist.appendChild(option);
     });
 
-    // Preencher dados do usuário
+    
     const usuario = await fetch(`/api/usuarios/usuarios/${id}`).then(res => res.json());
 
     document.querySelector('input[name="nome"]').value = usuario.nome || "";
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Preview de imagem
+
 document.getElementById("foto").addEventListener("change", function () {
   const file = this.files[0];
   const preview = document.getElementById("preview-foto");
@@ -74,7 +74,7 @@ document.getElementById("foto").addEventListener("change", function () {
   }
 });
 
-// Submissão do formulário
+
 document.getElementById("form-editar").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -86,7 +86,7 @@ document.getElementById("form-editar").addEventListener("submit", async (e) => {
   formData.set("curso", JSON.stringify([cursoValor]));
 
   try {
-    // 1. Atualizar dados pessoais
+    
     const responsePerfil = await fetch(`/api/usuarios/usuarios/${id}`, {
       method: "PATCH",
       body: formData
@@ -99,7 +99,7 @@ document.getElementById("form-editar").addEventListener("submit", async (e) => {
       return;
     }
 
-    // 2. Atualizar skills separadamente
+    
     const hards = hardskillsTagify.value.map(tag => tag.value);
     const softs = softskillsTagify.value.map(tag => tag.value);
 
@@ -116,7 +116,7 @@ document.getElementById("form-editar").addEventListener("submit", async (e) => {
       return;
     }
 
-    // Sucesso
+    
     alert("Perfil atualizado com sucesso!");
     localStorage.setItem("usuario_nome", formData.get("nome"));
     localStorage.setItem("usuario_email", formData.get("email"));

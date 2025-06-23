@@ -83,15 +83,15 @@ function adicionarHardskills() {
   'Comprometimento',
   'Relacionamento interpessoal'
 ];
-  // Preparar o comando INSERT para adicionar as habilidades
+  
   const stmt = db.prepare("INSERT OR IGNORE INTO softskills (skill) VALUES (?)");
 
-  // Inserir as habilidades uma a uma
+  
   habilidades.forEach(habilidade => {
     stmt.run(habilidade);
   });
 
-  // Finalizar a execução e fechar a preparação
+  
   stmt.finalize(() => {
     console.log("Habilidades inseridas com sucesso!");
   });

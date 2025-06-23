@@ -6,7 +6,7 @@ const path = require('path');
 const bcrypt = require('bcrypt');
 const fs = require("fs");
 
-// Configuração do upload da foto
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, '../public/image'));
@@ -71,7 +71,7 @@ router.patch("/usuarios/:id", upload.single("foto"), (req, res) => {
 });
 
 
-// Atualizar skills separadamente
+
 router.post("/usuarios/:id/skills", async (req, res) => {
   const { id } = req.params;
   const { hardskills, softskills } = req.body;
@@ -80,13 +80,13 @@ router.post("/usuarios/:id/skills", async (req, res) => {
     const hards = hardskills || [];
     const softs = softskills || [];
 
-    // Limpar dados antigos
+    
     await Promise.all([
       new Promise(resolve => db.run(`DELETE FROM usuario_hardskills WHERE usuario_id = ?`, [id], resolve)),
       new Promise(resolve => db.run(`DELETE FROM usuario_softskills WHERE usuario_id = ?`, [id], resolve))
     ]);
 
-    // Inserir hard skills
+    
     await Promise.all(hards.map(hab =>
       new Promise(resolve => {
         db.get(`SELECT id FROM hardskills WHERE habilidade = ?`, [hab], (err, row) => {
@@ -101,7 +101,7 @@ router.post("/usuarios/:id/skills", async (req, res) => {
       })
     ));
 
-    // Inserir soft skills
+    
     await Promise.all(softs.map(skill =>
       new Promise(resolve => {
         db.get(`SELECT id FROM softskills WHERE skill = ?`, [skill], (err, row) => {
@@ -124,7 +124,7 @@ router.post("/usuarios/:id/skills", async (req, res) => {
 });
 
 
-// Buscar dados do usuário + relacionamentos
+
 router.get("/usuarios/:id", (req, res) => {
   const id = req.params.id;
 
@@ -165,7 +165,6 @@ router.get("/usuarios/:id", (req, res) => {
 });
 
 
-// Listar cursos
 router.get("/cursos", (req, res) => {
   db.all("SELECT curso FROM cursos", [], (err, rows) => {
     if (err) return res.status(500).json({ error: "Erro ao buscar cursos" });
@@ -173,7 +172,7 @@ router.get("/cursos", (req, res) => {
   });
 });
 
-// Listar hard skills
+
 router.get("/hardskills", (req, res) => {
   db.all("SELECT habilidade FROM hardskills", [], (err, rows) => {
     if (err) return res.status(500).json({ error: "Erro ao buscar hard skills" });
@@ -181,7 +180,7 @@ router.get("/hardskills", (req, res) => {
   });
 });
 
-// Listar soft skills
+
 router.get("/softskills", (req, res) => {
   db.all("SELECT skill FROM softskills", [], (err, rows) => {
     if (err) return res.status(500).json({ error: "Erro ao buscar soft skills" });
