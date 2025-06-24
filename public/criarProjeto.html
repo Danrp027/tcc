@@ -68,6 +68,8 @@
 
         .linha {
             display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .campo {
@@ -83,59 +85,73 @@
     <div id="container">
 
         <h1><strong>Novo Projeto:</strong></h1>
-<form id="registrarProjeto" onsubmit="cadastrarProjeto">
-        <div class="linha">
-            <div class="campo">
-                <p><strong>Nome do Projeto:</strong></p>
-                <input placeholder="Projeto do Robô">
-            </div>
-            <div class="linhas">
-                <p><strong>Descrição:</strong></p>
-                <input placeholder="Robô feito a mão">
-            </div>
-        </div>
+        <form id="registrarProjeto" onsubmit="cadastrarProjeto(event)">
 
-        <div class="linha">
-            <div class="campo">
-                <p><strong>Objetivo:</strong></p>
-                <input placeholder="Fazer ele andar">
+            <div class="linha">
+                <div class="campo">
+                    <p><strong>Nome do Projeto:</strong></p>
+                    <input id="nome" placeholder="Projeto do Robô">
+                </div>
+                <div class="campo">
+                    <p><strong>Descrição:</strong></p>
+                    <input id="descricao" placeholder="Robô feito a mão">
+                </div>
             </div>
-            <div class="linhas">
-                <p><strong>Curso Relacionado:</strong></p>
-                <input placeholder="Mecânica e Elétrica">
-            </div>
-        </div>
 
-        <div class="linha">
-            <div class="campo">
-               
+            <div class="linha">
+                <div class="campo">
+                    <p><strong>Objetivo:</strong></p>
+                    <input id="objetivo" placeholder="Fazer ele andar">
+                </div>
+                <div class="campo">
+                    <p><strong>Curso Relacionado:</strong></p>
+                    <input id="cursoRelacionado" placeholder="Mecânica e Elétrica">
+                </div>
             </div>
-            <div class="linhas">
-                <p><strong>Status:</strong></p>
-                <input placeholder="Em andamento">
-            </div>
-        </div>
 
-        <div class="linha">
-            <div class="campo">
-                <p><strong>Inicio:</strong></p>
-                <input placeholder="24/03">
+            <div class="linha">
+                <div class="campo">
+                    <p><strong>Status:</strong></p>
+                    <input id="status" placeholder="Em andamento">
+                </div>
+                <div class="campo"></div>
             </div>
-            <div class="linhas">
-                <p><strong>Fim:</strong></p>
-                <input placeholder="24/05">
-            </div>
-        </div>
 
-        <button type="submit">Criar</button>
+            <div class="linha">
+                <div class="campo">
+                    <p><strong>Início:</strong></p>
+                    <input type="date" id="dataInicio">
+                </div>
+                <div class="campo">
+                    <p><strong>Fim:</strong></p>
+                    <input type="date" id="dataFim">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="campo">
+                    <p><strong>Vagas - Mecânica:</strong></p>
+                    <input type="number" id="vagasMecanica" value="0">
+                </div>
+                <div class="campo">
+                    <p><strong>Vagas - Elétrica:</strong></p>
+                    <input type="number" id="vagasEletrica" value="0">
+                </div>
+                <div class="campo">
+                    <p><strong>Vagas - Desenvolvimento:</strong></p>
+                    <input type="number" id="vagasDev" value="0">
+                </div>
+            </div>
+
+            <button type="submit">Criar</button>
 
         </form>
 
     </div>
 
-
-
-    </div>
+    
+    
 </body>
+<script src="js/projetos.js"></script>
 
 </html>

@@ -235,6 +235,20 @@ CREATE TABLE IF NOT EXISTS usuario_softskills (
 
   `);
 
+  db.run(`
+CREATE TABLE IF NOT EXISTS vagas_projetos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  projeto_id INTEGER,
+  curso TEXT,
+  vagas_total INTEGER,
+  FOREIGN KEY (projeto_id) REFERENCES projetos(id)
+);
+
+  `);
+
+  
+
+
 
 }
 
