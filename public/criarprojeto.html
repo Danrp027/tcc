@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Projeto</title>
+
+    <style>
+        body,
+        html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+            background-color: #0077cc;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            width: 1000px;
+
+            background-color: #f7f7f7;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #00000030;
+        }
+
+        h1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #0077cc;
+            background-color: #fff;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ab1717;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #920f0f;
+        }
+
+        .linha {
+            display: flex;
+        }
+
+        .campo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <h1><strong>Novo Projeto:</strong></h1>
+
+        <div class="linha">
+            <div class="campo">
+                <p><strong>Nome do Projeto:</strong></p>
+                <input placeholder="Projeto do Robô">
+            </div>
+            <div class="linhas">
+                <p><strong>Descrição:</strong></p>
+                <input placeholder="Robô feito a mão">
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="campo">
+                <p><strong>Objetivo:</strong></p>
+                <input placeholder="Fazer ele andar">
+            </div>
+            <div class="linhas">
+                <p><strong>Curso Relacionado:</strong></p>
+                <input placeholder="Mecânica e Elétrica">
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="campo">
+                <p><strong>Responsável:</strong></p>
+                <input placeholder="Victorio sonne">
+            </div>
+            <div class="linhas">
+                <p><strong>Status:</strong></p>
+                <input placeholder="Em andamento">
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="campo">
+                <p><strong>Inicio:</strong></p>
+                <input placeholder="24/03">
+            </div>
+            <div class="linhas">
+                <p><strong>Fim:</strong></p>
+                <input placeholder="24/05">
+            </div>
+        </div>
+
+        <button>Criar</button>
+
+    </div>
+
+
+
+    </div>
+</body>
+
+</html>
