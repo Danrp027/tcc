@@ -58,7 +58,8 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       padding: 10px;
       font-size: 16px;
       border-radius: 5px;
@@ -142,11 +143,18 @@
       <div class="linha">
         <div class="campo">
           <label for="email">Email:</label>
-          <input name="email" type="email" placeholder="victorio@email.com" />
+          <input name="email" type="email"  placeholder="victorio@email.com"/>
         </div>
         <div class="campo">
           <label for="modulo">Módulo:</label>
-          <input name="modulo" type="text" placeholder="Módulo 1" />
+
+          <select name="modulo">
+            <option value="1° Modulo" selected>1° Modulo</option>
+            <option value="2° Modulo">2° Modulo</option>
+            <option value="3° Modulo">3° Modulo</option>
+            <option value="4° Modulo">4° Modulo</option>
+          </select>
+
         </div>
       </div>
 

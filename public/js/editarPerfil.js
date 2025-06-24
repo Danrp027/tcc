@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector('input[name="nome"]').value = usuario.nome || "";
     document.querySelector('input[name="email"]').value = usuario.email || "";
     document.querySelector('input[name="idade"]').value = usuario.idade || "";
-    document.querySelector('input[name="modulo"]').value = usuario.modulo || "";
+    document.querySelector('select[name="modulo"]').value = usuario.modulo || "";
     document.querySelector('input[name="turma"]').value = usuario.turma || "";
     document.querySelector('textarea[name="biografia"]').value = usuario.biografia || "";
     document.querySelector('input[name="portfolio"]').value = usuario.portfolio || "";
